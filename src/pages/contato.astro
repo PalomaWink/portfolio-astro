@@ -1,0 +1,86 @@
+---
+import { z } from "astro:content";
+
+const validacaoDeContatoSchema = z.object({
+  nome: z.string().min(3, 'O campo do nome é obrigatorio').max(255).transform(name => {
+    return name.trim().split(' ').map(word => {
+      return word[0].toLocaleUpperCase().concat(word.substring(1))
+    }).join(' ')
+  }),
+  email: z.string().email("Email inválido").min(10, "O campo do email é obrigatório").max(255).toLowerCase(),
+  mensagem: z.string().min(3, 'O campo da mensagem é obrigatorio').max(255),
+})
+---
+
+<div id="contato" class="max-h-screen flex flex-col items-center justify-center mt-10 mb-10 max-w-full">
+  <h1 class="w-full font-playfair titles text-center text-4xl mb-4 bg-clip-text text-transparent bg-gradient-to-r from-rose-400 to-purple-800">
+    &lt;&nbsp;
+    Entre em contato
+    &frasl;&nbsp;&gt;
+  </h1>
+  <form action="" class="flex flex-col items-center justify-center w-full h-auto">
+    <div class="input_contato_div">
+      <input
+        type="text" 
+        class="input_contact"
+        placeholder="Nome"
+      />
+    </div>
+    <div class="input_contato_div">
+      <input 
+        type="email" 
+        class="input_contact"
+        placeholder="E-mail"
+      />
+    </div>
+    <div class="input_contato_div h-32">
+      <textarea
+        class="input_contact"
+        placeholder="Mensagem"
+      />
+    </div>
+    <div class="ml-6 pl-6 mt-10 flex flex-col items-center">
+      <button class="button" type="submit">
+        Enviar :)
+      </button>
+    </div>
+  </form>
+</div>
+
+<style>
+  .button {
+    --bg: #000;
+    --hover-bg: #ff90e8;
+    --hover-text: #000;
+    color: #fff;
+    border: 1px solid var(--bg);
+    border-radius: 4px;
+    padding: 0.6em 3em;
+    background: var(--bg);
+    transition: 0.2s;
+    max-width: 100%;
+    cursor: pointer;
+    opacity: 0.5;
+  }
+
+  .button:hover {
+    color: var(--hover-text);
+    transform: translate(-0.25rem, -0.25rem);
+    background: var(--hover-bg);
+    box-shadow: 0.25rem 0.25rem var(--bg);
+  }
+
+  .button:active {
+    transform: translate(0);
+    box-shadow: none;
+  }
+
+  .button:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  .button:not(:disabled) {
+    opacity: 1;
+  }
+</style>

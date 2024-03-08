@@ -1,3 +1,23 @@
 .navbar_button {
   @apply hover:text-tertiary hover:transition duration-300 hover:px-4 hover:py-2 hover:rounded-md hover:shadow-lg;
 }
+
+.input_contato_div {
+  @apply relative rounded-lg w-1/2 overflow-hidden before:absolute before:w-12 before:h-12 before:right-0 before:rounded-full before:blur-lg  after:absolute after:-z-10 after:w-20 after:h-20 after:right-12 after:top-3 after:rounded-full after:blur-lg m-3;
+}
+
+.input_contact {
+  @apply relative bg-transparent ring-0 outline-none border border-neutral-500 text-neutral-900 placeholder-violet-700 text-sm rounded-lg placeholder-opacity-60 block w-full p-2.5;
+}
+
+.input_contact:focus {
+  @apply ring-violet-500 border-violet-500;
+}
+
+.input_contact:checked {
+  @apply bg-emerald-500;
+}
+
+.titles {
+  box-shadow: 0 20px 25px -5px rgb(251 113 133 / 0.1), 0 8px 10px -6px rgb(251 113 133 / 0.1);
+}

@@ -1,17 +1,28 @@
 ---
+interface Technology {
+  name: string;
+  image: {
+    src: string;
+    width?: number;
+    height?: number;
+    format?: string;
+  };
+}
+
 interface Project {
-	title: string;
+  title: string;
   image: string;
-  status: string;
+  status?: string;
   description: string;
-  technologies: {
-    name: string;
-    image: string;
-  }[];
+  technologies: Technology[];
   githubUrl: string;
+  deployUrl: string;
 }
 
 const project: Project = Astro.props as Project;
+console.log('projetos', project);
+
+
 ---
 
 <li class="m-4 flex h-[700px] max-w-xs rounded-md overflow-hidden cards relative">
@@ -27,19 +38,19 @@ const project: Project = Astro.props as Project;
     </div>
     <p>{project.description}</p>
     <div>
-      {project.technologies.map((tech) => (
+      {project.technologies && project.technologies.map((tech) => (
         <div class="flex items-center space-x-2 ring-2 ring-blue-500/50 border-2 rounded-lg p-1 shadow-md">
-          <img src={tech.image} alt={tech.name} class="w-4" />
+          <img src={tech.image.src} alt={tech.name} class="w-4" />
           <span>{tech.name}</span>
         </div>
       ))}
     </div>
     <div>
       <a href={project.githubUrl} target="_blank" class="mr-2">
-        <i class="fa-brands fa-github-alt"></i>
+        <!-- <i class="fa-brands fa-github-alt"></i> -->
       </a>
-      <a href="">
-        <i class="fa-solid fa-globe"></i>
+      <a href={project.deployUrl} target="_blank" class="mr-2">
+        <!-- <i class="fa-solid fa-globe"></i> -->
       </a>
     </div>
   </div>

@@ -1,6 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Contato from '../pages/contato.astro'
+import Contato from './contato.astro'
+import Projetos from './projetos.astro';
+import Sobre from './sobre.astro';
 
 ---
 
@@ -26,6 +28,8 @@ import Contato from '../pages/contato.astro'
         <img src='/img/ilustracao1.webp' alt="Imagem de uma menina sentada usando notebook" class="w-3/4 h-auto rounded-full" />
       </div>
     </div>
+    <Sobre />
+    <Projetos/>
     <Contato/>
 	</main>
 </Layout>
